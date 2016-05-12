@@ -28,3 +28,8 @@ $ pip install -r requirements.txt
 ```
 
 The app is up and running at [localhost:8000](http://127.0.0.1:8000)
+
+
+#### Warning: 
+
+Please use the date range of less than approx a week. This is because of wunderground API call limitations.
