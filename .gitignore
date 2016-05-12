@@ -58,5 +58,14 @@ docs/_build/
 # PyBuilder
 target/
 
-#Ipython Notebook
+# Ipython Notebook
 .ipynb_checkpoints
+
+# Virtual Environments
+venv/
+
+# sqlite3 db
+db.sqlite3
+
+# Environment files
+.env

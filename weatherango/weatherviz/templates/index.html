@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+    <title>Weatherango | Visualize the weather</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+    <link rel="stylesheet" href="../static/css/awesomplete.css">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+
+    <nav>
+      <div class="nav-wrapper teal">
+        <a href="#" class="brand-logo center">Weatherango</a>
+      </div>
+    </nav>
+
+    <h5 class="center">Welcome to Weatherango!<br>Just select in the city, parameter and date range to visualize the weather!</h5>
+
+    <div class="center">
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger" href="#city-add-modal">Add new weather station</a>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="city-add-modal" class="modal">
+      <div class="modal-content">
+        <!-- <input type="text" name="city" class="validate" id="city" required> -->
+        <input class="dropdown-input" id="city" name="city"/>
+        <label for="city">City</label>
+        <div id="city-added"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="add-station-btn btn waves-effect waves-light col s2 offset-s5">
+          Add Weather Station
+        </button>
+        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+
+
+    <form class="col s12" name="weatherForm" method="POST">
+      {% csrf_token %}
+
+      <div class="row">
+        <div class="input-field col s5 offset-s1">
+          City
+          <select class="browser-default validate" id="city-select" required="required">
+            <option value="" disabled selected>Choose your option</option>
+          </select>
+        </div>
+
+        <div class="input-field col s5">
+          Parameter to plot
+          <select class="browser-default validate" id="parameter-select" required="required" data-error="wrong" data-success="right">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="tempm">Temperature</option>
+            <option value="hum">Humidity</option>
+            <option value="wspdm">Wind Speed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s5 offset-s1 validate">
+          <p>Start Date</p>
+          <input type="date" class="datepicker" id="start-date" name="start_date" required="required" data-error="wrong" data-success="right">
+        </div>
+        <div class="input-field col s5 validate">
+          <p>End Date</p>
+          <input type="date" class="datepicker" id="end-date" required="required">
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="submit-btn btn waves-effect waves-light col s2 offset-s5" value="submit" action="validate">
+          Plot Graph
+        </button>
+      </div>
+    </form>
+
+    <div class="result">
+      <div class="row">
+        <h5 class="center" id="graph-title"></h5>
+      </div>
+      <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+
+    <footer class="teal center">Developed by <a href="http://www.sanyamkhurana.com">Sanyam Khurana</a> using <a href="http://wunderground.com/">Wunderground API</a></footer>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+    <!-- <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.1/Chart.min.js" charset="utf-8"></script>
+
+    <script src="../static/js/awesomplete.min.js" charset="utf-8"></script>
+
+    <script src="../static/js/script.js" defer></script>
+
+  </body>
+</html>
